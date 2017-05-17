@@ -1,7 +1,9 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace AlekseyNagovitsyn.BuildVision.Tool
 {
+    [Serializable]
     public class PropertyNotFoundException : Exception
     {
         private readonly string _propertyName;
@@ -26,6 +28,11 @@ namespace AlekseyNagovitsyn.BuildVision.Tool
         public override string Message
         {
             get { return string.Format("Property '{0}' not found in '{1}' type.", _propertyName, _type); }
+        }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            base.GetObjectData(info, context);
         }
     }
 }

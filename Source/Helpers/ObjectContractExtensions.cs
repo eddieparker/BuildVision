@@ -31,7 +31,7 @@ namespace AlekseyNagovitsyn.BuildVision.Helpers
 
         public static string Serialize<T>(this T obj)
         {
-            using (var memoryStream = new MemoryStream())
+            var memoryStream = new MemoryStream();
             using (var reader = new StreamReader(memoryStream))
             {
                 var serializer = new DataContractSerializer(typeof(T));

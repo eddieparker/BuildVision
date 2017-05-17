@@ -86,11 +86,14 @@ namespace AlekseyNagovitsyn.BuildVision.Helpers
             CF_DSPENHMETAFILE = 0x8E,
         }
 
-        private struct POINT
+#pragma warning disable 0649
+        // Disabling: 0649 as we take the value and store it elsewhere but never manipulate it ourselves.
+        internal struct POINT
         {
             public int x;
             public int y;
         }
+#pragma warning restore 0649
 
         private struct DROPFILES
         {
@@ -129,7 +132,7 @@ namespace AlekseyNagovitsyn.BuildVision.Helpers
             IntPtr ipGlobal = Marshal.AllocHGlobal(intTotalLen);
             if (ipGlobal == IntPtr.Zero)
             {
-                error = Marshal.GetLastWin32Error();
+                error = -1;
                 return false;
             }
 
